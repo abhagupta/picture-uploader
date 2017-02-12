@@ -1,6 +1,8 @@
 var express = require("express");
 var app = express();
 
+app.use(express.static('views'))
+
 var fs = require("fs");
 
 var multer = require("multer");
@@ -27,7 +29,7 @@ conn.once("open", function(){
         res.render("home");
     });
 
-    app.post("/", upload.single("avatar"), function(req, res, next){
+    app.post("/upload", upload.single("avatar"), function(req, res, next){
         var writestream = gfs.createWriteStream({
             filename: req.file.originalname
         });
