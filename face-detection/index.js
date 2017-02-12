@@ -13,7 +13,7 @@ module.exports = {
                 console.log(err);
             }
 
-            callback(body);
+            return callback(body);
         })
     },
 
@@ -38,7 +38,7 @@ module.exports = {
         this.doPost(options, function(response){
             console.log(JSON.stringify(response));
             if(callback){
-                callback(response);
+               return callback(response);
             }
 
         });
