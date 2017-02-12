@@ -8,6 +8,7 @@ var upload = multer({dest: "./uploads"});
 
 var uri = process.env.MONGOLAB_URI;
 var mongoURI = 'mongodb://127.0.0.1:27017/images';
+var mongoose = require("mongoose");
 mongoose.connect(process.env.MONGOLAB_URI || mongoURI);
 
 // var mongoose = require("mongoose");
@@ -15,7 +16,7 @@ mongoose.connect(process.env.MONGOLAB_URI || mongoURI);
 
 //var uri = 'mongodb://dbuser:dbpass@host:port/dbname'
 
-mongoose.connect(mongodb_uri + "/images");
+//mongoose.connect(mongodb_uri + "/images");
 
 var conn = mongoose.connection;
 
@@ -75,6 +76,11 @@ app.set("views", "./views");
 
 
 
-if (!module.parent) {
-    app.listen(3001);
-}
+// if (!module.parent) {
+//     app.listen(3001);
+// }
+
+
+app.listen(process.env.PORT || 3001, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
