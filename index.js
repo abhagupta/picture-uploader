@@ -2,6 +2,7 @@ var express = require('express')
 var app = express();
 var bodyParser = require('body-parser');
 var busboy = require('connect-busboy');
+var ejs = require('ejs');
 var faceDetector = require('./face-detection/index');
 var googleTTS = require('google-tts-api');
 var Afplay = require('afplay');
@@ -20,6 +21,11 @@ var path = require('path'),
 app.use(busboy());
 
 app.use(express.static('public'))
+
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
+
+app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
@@ -87,10 +93,11 @@ app.post('/upload', function (req, res) {
                         .catch(function (err) {
                             console.error(err.stack);
                         });
-                    res.send("Welcome Home " + nameOfPerson + " !");
+                   // res.send("Welcome Home " + nameOfPerson + " !");
+                    res.render('home.ejs', {msg: nameOfPerson});
 
                 } else {
-                    res.send("Access Denied!");
+                    res.render('home.ejs', {msg: "Access Denied !"});
                 }
 
             })
