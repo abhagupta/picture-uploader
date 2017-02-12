@@ -12,6 +12,7 @@
   "dependencies": {
     "body-parser": "^1.16.1",
     "connect-busboy": "0.0.2",
+    "ejs": "^2.5.5",
     "gridfs-stream": "^1.1.1",
     "mongoose": "^4.8.2",
     "multer": "^1.3.0",
