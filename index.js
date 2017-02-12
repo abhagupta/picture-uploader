@@ -25,11 +25,7 @@ app.post('/enroll', function(req, res){
         file.pipe(fstream);
         fstream.on('close', function () {
             //res.redirect('back');
-            console.log('filname: ' , filename);
-            var temp = filename.substring(0,filename.indexOf('.'));
-            console.log('filname substrng: ' , temp);
-
-            faceDetector.enroll(filename, temp, function(response){
+            faceDetector.enroll(filename, filename.substring(0,filename.indexOf('.')), function(response){
                 console.log("response recieved from karios: ", response);
                 res.send(response);
             })
