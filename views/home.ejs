@@ -17,6 +17,11 @@
 <img src="http://www.animatedimages.org/data/media/703/animated-warning-image-0016.gif" />
 <% } else { %>
 <h1>Hello there <%= msg %></h1>
+<audio controls>
+    <source src=<%= audioFile%> type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
 <% } %>
 </body>
 </html>
