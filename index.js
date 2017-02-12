@@ -57,8 +57,10 @@ app.post('/upload', function (req, res) {
             faceDetector.recognize(filename, function(response){
                console.log("response recieved from karios: ", response);
                 var status = response.images[0].transaction.status;
-                var nameOfPerson = response.images[0].candidates.subject_id;
-                if(status === 'success'){
+
+
+                if(status === 'success') {
+                    var nameOfPerson = response.images[0].candidates[0].subject_id;
                     googleTTS('Welcome Home' + nameOfPerson, 'en', 1)   // speed normal = 1 (default), slow = 0.24
                         .then(function (url) {
                             //console.log(url); // https://translate.google.com/translate_tts?...
