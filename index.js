@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var busboy = require('connect-busboy');
 var faceDetector = require('./face-detection/index');
+var googleTTS = require('google-tts-api');
 
 var path = require('path'),
     fs = require('fs');
@@ -56,8 +57,17 @@ app.post('/upload', function (req, res) {
             faceDetector.recognize(filename, function(response){
                console.log("response recieved from karios: ", response);
                 var status = response.images[0].transaction.status;
+                var nameOfPerson = response.images[0].candidates.subject_id;
                 if(status === 'success'){
-                    res.send("Welcome Home!");
+                    googleTTS('Welcome Home' + nameOfPerson, 'en', 1)   // speed normal = 1 (default), slow = 0.24
+                        .then(function (url) {
+                            //console.log(url); // https://translate.google.com/translate_tts?...
+                            res.send("Welcome Home" + nameOfPerson + "!");
+                        })
+                        .catch(function (err) {
+                            console.error(err.stack);
+                        });
+
                 } else {
                     res.send("Access Denied!");
                 }
