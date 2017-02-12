@@ -1,6 +1,7 @@
 const request = require("request");
 const constants = require("./constants");
 
+//var URL = 'http://localhost/';
 var URL = 'https://picture-uploader-hackathon.herokuapp.com/';
 var KAIROS_URL = 'https://api.kairos.com/'
 
@@ -17,6 +18,7 @@ module.exports = {
     },
 
     enroll: function(img, subjectId, gallery, callback){  // has to be form "abha.jpg"
+        console.log('url :', URL);
         var body = {
             "image": URL + img,
             "subject_id": subjectId,
@@ -35,7 +37,10 @@ module.exports = {
 
         this.doPost(options, function(response){
             console.log(JSON.stringify(response));
-            callback(response);
+            if(callback){
+                callback(response);
+            }
+
         });
 
     },
