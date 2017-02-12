@@ -78,7 +78,7 @@ app.post('/upload', function (req, res) {
                                     .then(function () {
                                         console.log('Audio done playing');
                                     }).catch(function (error) {
-                                    console.log('Error playing file');
+                                    console.log('Error playing file', error.message);
                                 });
                             });
 
