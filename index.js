@@ -27,9 +27,9 @@ app.post('/enroll', function(req, res){
             //res.redirect('back');
             faceDetector.enroll(filename, filename.substring(0,filename.indexOf('.')), function(response){
                 console.log("response recieved from karios: ", response);
-                res.send(response);
+                //res.send(response);
             })
-            //res.send("successfully enrolled");
+            res.send("successfully enrolled");
         });
 
         // console.log('filname: ' , filename);
@@ -55,7 +55,13 @@ app.post('/upload', function (req, res) {
             //res.redirect('back');
             faceDetector.recognize(filename, function(response){
                console.log("response recieved from karios: ", response);
-               res.send(response);
+                var status = response.images[0].transaction.status;
+                if(status === 'success'){
+                    res.send("Welcome Home!");
+                } else {
+                    res.send("Access Denied!");
+                }
+
             })
         });
     });
