@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "afplay": "^1.0.3",
     "body-parser": "^1.16.1",
     "connect-busboy": "0.0.2",
+    "download-file": "^0.1.5",
     "ejs": "^2.5.5",
     "google-tts-api": "0.0.1",
     "gridfs-stream": "^1.1.1",
