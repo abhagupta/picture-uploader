@@ -33,7 +33,7 @@ app.post('/enroll', function(req, res){
                 console.log("response recieved from karios: ", response);
                 res.send(response);
             })
-            res.send("successfully enrolled");
+            //res.send("successfully enrolled");
         });
 
         // console.log('filname: ' , filename);
