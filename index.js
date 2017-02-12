@@ -77,16 +77,7 @@ app.post('/upload', function (req, res) {
                     var nameOfPerson = response.images[0].candidates[0].subject_id;
                     googleTTS('Welcome Home' + nameOfPerson, 'en', 1)   // speed normal = 1 (default), slow = 0.24
                         .then(function (url) {
-                            //console.log(url); // https://translate.google.com/translate_tts?...
-                            download(url, options, function(err) {
-                                if (err) throw err;
-                                player.play('./voice.mp3')
-                                    .then(function () {
-                                        console.log('Audio done playing');
-                                    }).catch(function (error) {
-                                    console.log('Error playing file', error.message);
-                                });
-                            });
+                            res.render('home.ejs', {msg: nameOfPerson, audioFile: url});
 
                         })
 
@@ -94,7 +85,7 @@ app.post('/upload', function (req, res) {
                             console.error(err.stack);
                         });
                    // res.send("Welcome Home " + nameOfPerson + " !");
-                    res.render('home.ejs', {msg: nameOfPerson});
+                    //res.render('home.ejs', {msg: nameOfPerson, audioFile: });
 
                 } else {
                     res.render('home.ejs', {msg: "Access Denied !"});
