@@ -11,10 +11,12 @@
     <input type="submit" value="submit">
 </form>
 
-<h1>Hello there <%= msg %></h1>
+
 
 <%if (msg === 'Access Denied !') { %>
 <img src="http://www.animatedimages.org/data/media/703/animated-warning-image-0016.gif" />
+<% } else { %>
+<h1>Hello there <%= msg %></h1>
 <% } %>
 </body>
 </html>
