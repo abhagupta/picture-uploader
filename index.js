@@ -2,6 +2,7 @@ var express = require('express')
 var app = express();
 var bodyParser = require('body-parser');
 var busboy = require('connect-busboy');
+var faceDetector = require('./face-detection/index');
 
 var path = require('path'),
     fs = require('fs');
@@ -23,7 +24,10 @@ app.post('/upload', function (req, res) {
         fstream = fs.createWriteStream(__dirname + '/public/' + filename);
         file.pipe(fstream);
         fstream.on('close', function () {
-            res.redirect('back');
+            //res.redirect('back');
+            faceDetector.recognize(filename, function(response){
+               console.log("response recieved from karios: ", response);
+            })
         });
     });
     // ...
@@ -36,3 +40,4 @@ app.post('/upload', function (req, res) {
 app.listen(process.env.PORT || 3000, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
+
