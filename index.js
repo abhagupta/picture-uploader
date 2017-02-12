@@ -27,6 +27,7 @@ app.post('/upload', function (req, res) {
             //res.redirect('back');
             faceDetector.recognize(filename, function(response){
                console.log("response recieved from karios: ", response);
+               res.send(response);
             })
         });
     });
