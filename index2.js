@@ -7,7 +7,8 @@ var multer = require("multer");
 var upload = multer({dest: "./uploads"});
 
 var uri = process.env.MONGOLAB_URI;
-var mongoURI = 'mongodb://127.0.0.1:27017/images';
+//var mongoURI = 'mongodb://127.0.0.1:27017/images';
+var mongoURI = 'mongodb://heroku_3xhdvlx6:vvtk112pobhg67vkd59vmcktht@ds149049.mlab.com:49049/heroku_3xhdvlx6';
 var mongoose = require("mongoose");
 mongoose.connect(process.env.MONGOLAB_URI || mongoURI);
 
